@@ -6,7 +6,7 @@ export const metadata = {
 }
 
 // NOI DUNG GỐC ĐỂ BAO TẤT CẢ PAGE TRONG THƯ MỤC 
-export default function RootLayout({
+export default function BlogLayout({
   children,
 }: {
   children: React.ReactNode
