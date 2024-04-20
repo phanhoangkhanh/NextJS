@@ -1,8 +1,10 @@
-
+'use client'
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import CreateModal from './create.modal';
 import { useState } from 'react';
+import UpdateModal from './update.modal';
+import Link from 'next/link';
 
 // load API json ra thì như sau :
 // b1: tạo thư mực type/ backend.d.ts ( data type )
@@ -19,6 +21,9 @@ function AppTable(props : IProps) {
     const {blogs} = props ;
     //console.log('check prop>>', blogs)
     const [showModal, setShowModal ] = useState(false)
+    // update 1 blog nào đó
+    const [blog, setBlogg] = useState('')
+
   return (
     <>
     <div
@@ -44,15 +49,27 @@ function AppTable(props : IProps) {
       </thead>
       <tbody>
         {
-            blogs.map(blog=>{
+            blogs.map(item=>{
                 return(
-                    <tr key={blog.id}>
-                        <td>{blog.id}</td>
-                        <td>{blog.title}</td>
-                        <td>{blog.author}</td>
+                    <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.title}</td>
+                        <td>{item.author}</td>
                         <td>
-                            <Button>View</Button>
-                            <Button variant='warning' className='mx-2'>Edit</Button>
+                            <Link 
+                                className='btn btn-primary'
+                                href={`/blogs/${item.id}`}
+                                >View
+                            </Link>
+                            <Button variant='warning' 
+                                className='mx-2'
+                                onClick={ () => {
+                                    setShowModal(true)
+                                    setBlogg(item)
+                                }}
+                            >
+                                Edit
+                            </Button>
                             <Button variant='danger'>Delete</Button>
                         </td>
                     </tr>
@@ -62,6 +79,13 @@ function AppTable(props : IProps) {
       </tbody>
     </Table>
     <CreateModal showModal={showModal} setShowModal ={setShowModal} />
+    <UpdateModal 
+        showModal={showModal}
+        setShowModal ={setShowModal}
+        blog={blog}
+        setBlogg = {setBlogg}
+    />
+
     </>
   );
 }

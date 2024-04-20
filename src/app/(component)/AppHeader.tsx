@@ -18,6 +18,7 @@ function AppHeader() {
           <Nav className="me-auto">
             <Link href="/admin/subadmin" className='nav-link'>Home</Link>
             <a href="https://vnexpress.net/" className='nav-link'>VnExpress</a>
+            <Link href="/blogs" className='nav-link'>Blogs</Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="/https://vnexpress.net/">VnExpress</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
