@@ -36,7 +36,11 @@ export default function Home() {
   )
   console.log('check SWR:', data)
 
+  if(!data){
+    // nêu chưa fetch dc data - nếu có thì truyền props về
+    return <div>Loading....</div>
+  }
   return (
-    <AppTable/>
+    <AppTable blogs={data}/>
   )
 }
