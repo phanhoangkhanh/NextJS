@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import AppHeader from './(component)/AppHeader'
 import AppFooter from './(component)/AppFooter';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import Container from 'react-bootstrap/Container';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,6 +28,7 @@ export default function RootLayout({
           {children}
         </Container>
         <AppFooter/>
+        <ToastContainer autoClose={1500} />
       </body>
     </html>
   )
