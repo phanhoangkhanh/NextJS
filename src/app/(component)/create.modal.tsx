@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { mutate } from 'swr'; //xác đinh thay doi để call API gọi lai danh sách
 
 function CreateModal({...props}) {
 
@@ -30,6 +31,7 @@ const handleSubmit = () => {
             setRespond(res)
             handleCloseModal()
             props.setShowModal(false)
+            mutate('http://localhost:8000/blogs') // key kích mutate là tên API cũng chính là link gọi API
         })
 
     toast.success(`create successful...!Newid=${respond}` )
