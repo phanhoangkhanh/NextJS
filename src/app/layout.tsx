@@ -7,8 +7,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Container from 'react-bootstrap/Container';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const inter = Inter({ subsets: ['latin'] })
+//react query
+const queryClient = new QueryClient()
 
 export const metadata = {
   title: 'Create Next App',
@@ -24,11 +34,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppHeader/>
+        <QueryClientProvider client={queryClient}>
         <Container style={{minHeight : 'calc(100vh-106px)'}}>
           {children}
         </Container>
+        <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
         <AppFooter/>
         <ToastContainer autoClose={1500} />
+        
       </body>
     </html>
   )
